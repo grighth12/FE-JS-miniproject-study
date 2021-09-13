@@ -56,4 +56,10 @@ export default function Nodes({ $target, initialState, onPrevClick, onClick }) {
       onPrevClick()
     }
   })
+
+  window.addEventListener('keyup', async (e) => {
+    if (!this.state.isRoot && e.key === 'Backspace') {
+      onPrevClick()
+    }
+  })
 }
