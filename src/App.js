@@ -3,17 +3,17 @@ import ImageViewer from './components/ImageViewer.js'
 import Loading from './components/Loading.js'
 import Nodes from './components/Nodes.js'
 
-// import { types } from './constants.js'
+import { types } from './constants.js'
 import { request } from './api.js'
-// import { validateKeys, validateTypes } from './utils/validator.js'
+import { validateKeys, validateTypes } from './utils/validate.js'
 
-// const appStateTypes = {
-//   isRoot: types.BOOLEAN,
-//   nodes: types.ARRAY,
-//   paths: types.ARRAY,
-//   isLoading: types.BOOLEAN,
-//   selectedImageUrl: [types.STRING, types.NULL],
-// }
+const appStateTypes = {
+  isRoot: types.BOOLEAN,
+  nodes: types.ARRAY,
+  paths: types.ARRAY,
+  isLoading: types.BOOLEAN,
+  selectedImageUrl: [types.STRING, types.NULL],
+}
 
 export default function App({ $target }) {
   this.state = {
@@ -99,8 +99,8 @@ export default function App({ $target }) {
   })
 
   this.setState = (nextState) => {
-    // validateKeys(appStateTypes, nextState)
-    // validateTypes(appStateTypes, nextState)
+    validateKeys(appStateTypes, nextState)
+    validateTypes(appStateTypes, nextState)
 
     this.state = nextState
 

@@ -1,4 +1,4 @@
-// import { getIsNeedRendering } from '../utils/render.js'
+import { getIsNeedRendering } from '../utils/render.js'
 
 export default function Nodes({ $target, initialState, onPrevClick, onClick }) {
   const $nodes = document.createElement('div')
@@ -8,12 +8,10 @@ export default function Nodes({ $target, initialState, onPrevClick, onClick }) {
   this.state = initialState
 
   this.setState = (nextState) => {
-    // if (getIsNeedRendering(this.state, nextState)) {
-    //   console.log('Nodes render')
-
-    this.state = nextState
-    this.render()
-    // }
+    if (getIsNeedRendering(this.state, nextState)) {
+      this.state = nextState
+      this.render()
+    }
   }
 
   this.render = () => {
@@ -51,7 +49,6 @@ export default function Nodes({ $target, initialState, onPrevClick, onClick }) {
     const $node = e.target.closest('.Node')
     const { id } = $node.dataset
 
-    // api에서 넘어오는 id가 스트링이라 형변환 필요 없음
     const node = this.state.nodes.find((node) => node.id === id)
     if (node) {
       onClick(node)

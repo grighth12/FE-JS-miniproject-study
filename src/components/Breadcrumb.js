@@ -1,4 +1,4 @@
-// import { getIsNeedRendering } from '../utils/render.js'
+import { getIsNeedRendering } from '../utils/render.js'
 
 export default function Breadcrumb({ $target, initialState, onClick }) {
   const $breadcrumb = document.createElement('nav')
@@ -8,11 +8,10 @@ export default function Breadcrumb({ $target, initialState, onClick }) {
   this.state = initialState
 
   this.setState = (nextState) => {
-    // if (getIsNeedRendering(this.state, nextState)) {
-    //   console.log('BreadCrumb render')
-    this.state = nextState
-    this.render()
-    // }
+    if (getIsNeedRendering(this.state, nextState)) {
+      this.state = nextState
+      this.render()
+    }
   }
 
   this.render = () => {

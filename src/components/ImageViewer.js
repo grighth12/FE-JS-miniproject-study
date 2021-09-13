@@ -1,4 +1,4 @@
-// import { getIsNeedRendering } from '../utils/render.js'
+import { getIsNeedRendering } from '../utils/render.js'
 
 export default function ImageViewer({ $target, onClose }) {
   const $imageViewer = document.createElement('div')
@@ -11,12 +11,10 @@ export default function ImageViewer({ $target, onClose }) {
   }
 
   this.setState = (nextState) => {
-    // if (getIsNeedRendering(this.state, nextState)) {
-    //   console.log('ImageViewer render')
-
-    this.state = nextState
-    this.render()
-    // }
+    if (getIsNeedRendering(this.state, nextState)) {
+      this.state = nextState
+      this.render()
+    }
   }
 
   this.render = () => {
@@ -34,14 +32,12 @@ export default function ImageViewer({ $target, onClose }) {
   this.render()
 
   window.addEventListener('keyup', (e) => {
-    // ? keyCode는 왜 안쓰지
     if (e.key === 'Escape') {
       onClose()
     }
   })
 
   $imageViewer.addEventListener('click', (e) => {
-    //   if(e.target.classList.contains('Modal')) {
     if (Array.from(e.target.classList).includes('Modal')) {
       onClose()
     }

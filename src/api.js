@@ -10,7 +10,6 @@ export const request = async (url) => {
 
     return await res.json()
   } catch (e) {
-    console.log(e)
     alert(e.message)
   }
 }

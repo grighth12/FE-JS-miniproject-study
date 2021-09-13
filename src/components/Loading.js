@@ -1,4 +1,4 @@
-// import { getIsNeedRendering } from '../utils/render.js'
+import { getIsNeedRendering } from '../utils/render.js'
 
 export default function Loading({ $target }) {
   const $loading = document.createElement('div')
@@ -9,12 +9,10 @@ export default function Loading({ $target }) {
   this.state = false
 
   this.setState = (nextState) => {
-    // if (getIsNeedRendering(this.state, nextState)) {
-    //   console.log('Loading render')
-
-    this.state = nextState
-    this.render()
-    // }
+    if (getIsNeedRendering(this.state, nextState)) {
+      this.state = nextState
+      this.render()
+    }
   }
 
   this.render = () => {
